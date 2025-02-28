@@ -1,0 +1,78 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/* Center Container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url("../assets/13295527_5153829.jpg") no-repeat center center/cover; /* Background Image */
+
+}
+  
+  /* Login Box */
+  .login-box {
+
+   width: 100%;
+   max-width: 500px;
+   padding: 30px;
+   border-radius: 25px;
+   text-align: center;
+   height: auto;
+   background-color: #0022ff28;
+  }
+  .login-box h1 {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+  /* Input Field */
+  .input-field {
+    width: 90%;
+    padding: 12px;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ffffffc3;
+
+    border-radius: 8px;
+    margin-block: 30px;
+    text-align: center;
+    
+  }
+  
+  /* Error Message */
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  /* Button */
+  .login-btn {
+    width: 50%;
+    background: #039a21;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 15px;
+  }
+  
+  .login-btn:hover {
+    background: #0056b3;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 480px) {
+    .login-box {
+      padding: 20px;
+      margin-inline: 20px;
+    }
+  
+    .input-field, .login-btn {
+      font-size: 14px;
+      padding: 10px;
+    }
+  }

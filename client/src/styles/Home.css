@@ -1,0 +1,134 @@
+
+  
+  .hero-section {
+    background: url('../assets/bank.png') no-repeat center center/cover;
+    padding: 100px 0;
+    height: 100vh;
+
+  }
+  .hero-section h1{
+    width: 70%;
+    margin-top: 15%;
+    padding-inline: 120px;
+    text-align: left;
+    font-size: 40px;
+    font-weight: 700;
+    color: rgb(255, 252, 252);
+  }
+
+  /* Add this CSS to your project to style calendar tiles */
+.react-calendar__tile.present {
+  background-color: green;
+  color: white;
+  border-radius: 10%;
+}
+
+.react-calendar__tile.absent {
+  background-color: red;
+  color: white;
+  border-radius: 10%;
+
+}
+
+/* Optional: You can customize the hover effect or other visual cues for attendance */
+.react-calendar__tile:hover {
+  opacity: 0.7;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+
+
+.home-container {
+  background-color: #f5f5f5; /* Optional, in case you want to add a light background for other sections */
+}
+
+/* Location Section */
+.location-section {
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.location-title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.map-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 20px auto;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.location-address {
+  font-size: 1.2rem;
+  color: #555;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .location-title {
+      font-size: 1.8rem;
+  }
+
+  .map-container {
+      margin: 0 auto 10px auto;
+      height: 300px; /* Adjust height for smaller screens */
+  }
+
+  .location-address {
+      font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .location-title {
+      font-size: 1.5rem;
+  }
+
+  .map-container {
+      height: 250px;
+  }
+
+  .location-address {
+      font-size: 0.9rem;
+  }
+}
+
+
+/* Mobile Menu styles */
+@media (max-width: 768px) {
+  .hero-section h1{
+    width: 70%;
+    margin-top: 15%;
+    padding-inline: 20px;
+    text-align: left;
+    font-size: 40px;
+    font-weight: 700;
+    color: rgb(255, 252, 252);
+  }
+}

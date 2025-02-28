@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Full-Screen Centering */
+  .otp-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url("../assets/13295527_5153829.jpg") no-repeat center center/cover;
+  }
+  
+  /* OTP Box */
+  .otp-box {
+    width: 100%;
+   max-width: 500px;
+   padding: 30px;
+   border-radius: 25px;
+   text-align: center;
+   height: auto;
+   background-color: #0022ff28;
+  }
+  
+  /* Heading */
+  .otp-box h1 {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+    margin-bottom: 20px;
+  }
+  
+  /* OTP Input */
+  .otp-input {
+    width: 90%;
+    padding: 12px;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ffffffc3;
+
+    border-radius: 8px;
+    margin-block: 30px;
+    text-align: center;
+  }
+  
+  /* Button */
+  .otp-btn {
+    width: 50%;
+    background: #039a21;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 15px;
+  }
+  
+  .otp-btn:hover {
+    background: #0056b3;
+  }
+  
+  /* Mobile Responsive */
+  @media (max-width: 480px) {
+    .otp-box {
+      padding: 20px;
+      margin-inline: 20px;
+    }
+  
+    .otp-input,
+    .otp-btn {
+      font-size: 16px;
+      padding: 10px;
+    }
+  }

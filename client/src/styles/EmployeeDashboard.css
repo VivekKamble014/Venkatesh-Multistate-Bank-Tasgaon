@@ -1,0 +1,85 @@
+/* Dashboard Layout */
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Content should take full space next to the sidebar */
+.dashboard-content {
+    margin-left: 250px; /* Same width as sidebar */
+    padding: 20px;
+    width: 100%;
+    overflow-y: auto; /* Enables scrolling when content overflows */
+    background: #f4f4f4;
+}
+
+/* Layout */
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Fixed Sidebar */
+.sidebar-container {
+    width: 250px;
+    position: fixed;
+    height: 100vh;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Content Area */
+.dashboard-content {
+    margin-left: 250px;
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: #f8f9fa;
+    min-height: 100vh;
+}
+
+/* Attendance Section */
+.attendance-section {
+    background: white;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.attendance-section h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Attendance Button */
+.mark-attendance-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.mark-attendance-btn:hover {
+    background: #0056b3;
+}
+
+/* Show Menu Button Only on Small Screens */
+@media (max-width: 768px) {
+    .dashboard-content {
+        margin-left: 0; /* Same width as sidebar */
+        padding: 20px;
+        padding-top: 20%;
+        width: 100%;
+        overflow-y: auto; /* Enables scrolling when content overflows */
+        background: #f4f4f4;
+    }
+}
+
