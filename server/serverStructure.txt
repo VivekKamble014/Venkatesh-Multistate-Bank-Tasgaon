@@ -1,0 +1,42 @@
+/backend
+│── /config
+│   ├── db.js                 # Database connection setup
+│   ├── dotenv.js              # Load environment variables
+│
+│── /controllers
+│   ├── adminController.js     # Handles admin-related logic
+│   ├── employeeController.js  # Handles employee-related logic
+│   ├── attendanceController.js # Handles attendance-related logic
+│   ├── taskController.js      # Handles task-related logic
+│   ├── notificationController.js # Handles notifications
+│
+│── /middlewares
+│   ├── authMiddleware.js      # Auth middleware for verifying tokens
+│   ├── errorMiddleware.js     # Error handling middleware
+│
+│── /models
+│   ├── Admin.js               # Admin schema
+│   ├── Employee.js            # Employee schema
+│   ├── Attendance.js          # Attendance schema
+│   ├── Task.js                # Task schema
+│   ├── Notification.js        # Notification schema
+│
+│── /routes
+│   ├── adminRoutes.js         # Routes for admin actions
+│   ├── employeeRoutes.js      # Routes for employee actions
+│   ├── attendanceRoutes.js    # Routes for attendance actions
+│   ├── taskRoutes.js          # Routes for task management
+│   ├── notificationRoutes.js  # Routes for notifications
+│
+│── /utils
+│   ├── emailService.js        # Handles email verification
+│   ├── otpService.js          # Generates OTP for admin login
+│
+│── /validators
+│   ├── employeeValidator.js   # Validates employee input data
+│   ├── adminValidator.js      # Validates admin input data
+│
+│── .env                      # Environment variables
+│── .gitignore                 # Git ignore file
+│── package.json               # Dependencies
+│── server.js                  # Entry point

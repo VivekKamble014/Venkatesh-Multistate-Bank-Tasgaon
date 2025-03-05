@@ -1,0 +1,114 @@
+/* Container */
+.tasks-container {
+    margin-left: 250px;
+    display: flex;
+    min-height: 100vh;
+    background: #f8f9fa;
+}
+
+/* Content Area */
+.tasks-content {
+    flex-grow: 1;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Heading */
+h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Task List */
+.task-list {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Task Item */
+.task-item {
+    background: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s;
+}
+
+/* Task Title */
+.task-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Task Actions */
+.task-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Buttons */
+.task-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Completed Button */
+.completed {
+    background: #28a745;
+    color: white;
+}
+
+.completed:hover {
+    background: #218838;
+}
+
+/* Pending Button */
+.pending {
+    background: #dc3545;
+    color: white;
+}
+
+.pending:hover {
+    background: #b02a37;
+}
+
+/* Disabled Button */
+.task-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .tasks-content {
+        padding: 10px;
+    }
+
+    .task-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .task-actions {
+        margin-top: 10px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .task-btn {
+        width: 48%;
+    }
+}

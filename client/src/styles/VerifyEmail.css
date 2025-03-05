@@ -1,0 +1,54 @@
+.verify-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+  }
+  
+  .verify-box {
+    text-align: center;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 90%;
+  }
+  
+  .verify-image {
+    max-width: 100px;
+    margin-bottom: 15px;
+  }
+  
+  .verify-message {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  .verify-message.success {
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+  }
+  
+  .verify-message.error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+  }
+  
+  .verify-message.info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border: 1px solid #bee5eb;
+  }
+  
+  .verify-text {
+    font-size: 14px;
+    color: #555;
+    margin-top: 10px;
+  }

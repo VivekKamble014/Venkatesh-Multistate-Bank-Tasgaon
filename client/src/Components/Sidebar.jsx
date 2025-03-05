@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom"; // Import useLocation
+import { Link, useLocation, useNavigate } from "react-router-dom"; // Import useNavigate
 import { Menu, X, User, LayoutDashboard, CheckSquare, BarChart, Bell, LogOut } from "lucide-react";
 import "../styles/Sidebar.css";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(window.innerWidth > 768);
   const location = useLocation(); // Get current route path
+  const navigate = useNavigate(); // For redirection
 
   // Handle screen resize to show sidebar on large screens
   useEffect(() => {
@@ -15,6 +16,12 @@ const Sidebar = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // Logout function
+  const handleLogout = () => {
+    localStorage.removeItem("authToken"); // Remove token
+    navigate("/login"); // Redirect to login page
+  };
 
   return (
     <>
@@ -30,45 +37,47 @@ const Sidebar = () => {
         {/* Welcome Message */}
         <div className="welcome-message">
           <h2>Welcome!</h2>
-          <p>Ganesh Gawali.</p>
+          
         </div>
 
         <ul className="sidebar-menu">
-          <li className={location.pathname === "/profile" ? "active" : ""}>
-            <Link to="/profile">
+          <li className={location.pathname === "/Profile" ? "active" : ""}>
+            <Link to="/Profile">
               <User size={22} />
               <span>Profile</span>
             </Link>
           </li>
           <li className={location.pathname === "/EmployeeDashboard" ? "active" : ""}>
-            <Link to="/dashboard">
+            <Link to="/EmployeeDashboard">
               <LayoutDashboard size={22} />
               <span>Dashboard</span>
             </Link>
           </li>
-          <li className={location.pathname === "/tasks" ? "active" : ""}>
-            <Link to="/tasks">
+          <li className={location.pathname === "/YourTasks" ? "active" : ""}>
+            <Link to="/YourTasks">
               <CheckSquare size={22} />
               <span>Your Tasks</span>
             </Link>
           </li>
-          <li className={location.pathname === "/progress" ? "active" : ""}>
-            <Link to="/progress">
+          <li className={location.pathname === "/YourProgress" ? "active" : ""}>
+            <Link to="/YourProgress">
               <BarChart size={22} />
               <span>Your Progress</span>
             </Link>
           </li>
-          <li className={location.pathname === "/notifications" ? "active" : ""}>
-            <Link to="/notifications">
+          <li className={location.pathname === "/Notification" ? "active" : ""}>
+            <Link to="/Notification">
               <Bell size={22} />
               <span>Notification</span>
             </Link>
           </li>
-          <li className={`logout ${location.pathname === "/logout" ? "active" : ""}`}>
-            <Link to="/logout">
+
+          {/* Logout Button */}
+          <li className="logout">
+            <button onClick={handleLogout} className="logout-btn">
               <LogOut size={22} />
               <span>Logout</span>
-            </Link>
+            </button>
           </li>
         </ul>
       </div>
