@@ -1,44 +1,8 @@
-// import React, { useEffect } from "react";
-// import { useNavigate } from "react-router-dom"; // Import for redirection
-// import Sidebar from "../Components/Sidebar"; // Import Sidebar component
-// import "../styles/EmployeeDashboard.css"; // Import styles
-
-// export default function EmployeeDashboard() {
-//   const navigate = useNavigate();
-
-//   useEffect(() => {
-//     // Check if user is logged in (token exists in localStorage)
-//     const token = localStorage.getItem("authToken");
-
-//     if (!token) {
-//       navigate("/login"); // Redirect to login if not authenticated
-//     }
-//   }, [navigate]);
-
-//   return (
-//     <div className="dashboard-container">
-//       <Sidebar /> {/* Fixed Sidebar */}
-//       <div className="dashboard-content">
-//         <h1>Hello,</h1>
-//         <p>Welcome to the Employee Dashboard Mr. Ganesh Gawali.</p>
-
-//         {/* Attendance Section */}
-//         <div className="attendance-section">
-//           <h2>Mark Your Attendance Today</h2>
-//           <button className="mark-attendance-btn">Mark Attendance</button>
-//         </div>
-
-//         <div style={{ height: "100vh", background: "#f4f4f4" }}></div> {/* Extra content for scrolling */}
-//       </div>
-//     </div>
-//   );
-// }
-
 
 
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "../Components/Sidebar";
+import Sidebar from "../UserComponents/Sidebar";
 import "../styles/EmployeeDashboard.css";
 
 export default function EmployeeDashboard() {

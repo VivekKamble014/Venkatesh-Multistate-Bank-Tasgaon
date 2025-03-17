@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/SignupForm.css";  // Import CSS file
-import bb from  "../assets/SignupForm.jpg";
+import bb from  "../assets/registrationimg.jpg";
 import { Link } from "react-router-dom";
 
 const SignupForm = () => {
@@ -67,10 +67,10 @@ const SignupForm = () => {
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })} 
                 required 
               />
-              <button type="submit">Register</button>
+              <button type="submit">Sign Up</button>
             </form>
             <p className="register-link">
-         have an account? <Link to="/login">Login here</Link>
+         have an account? <Link to="/login">Sign In here</Link>
         </p>
           </div>
         </div>

@@ -8,7 +8,7 @@
   }
   .hero-section h1{
     width: 70%;
-    margin-top: 15%;
+
     padding-inline: 120px;
     text-align: left;
     font-size: 40px;
@@ -16,107 +16,324 @@
     color: rgb(255, 252, 252);
   }
 
-  /* Add this CSS to your project to style calendar tiles */
-.react-calendar__tile.present {
-  background-color: green;
-  color: white;
-  border-radius: 10%;
-}
+/* about Us */
 
-.react-calendar__tile.absent {
-  background-color: red;
-  color: white;
-  border-radius: 10%;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .about-section {
+    padding: 80px 10%;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .about-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 2200px;
+    width: 100%;
+    height: 50vh;
+    gap: 70px;
+    animation: fadeIn 1.5s ease-in-out;
+  }
+  
+  /* Left Image Section */
+  .about-image {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .about-image img {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+  }
+  
+  /* Right Content Section */
+  .about-content {
+    flex: 1;
+  }
+  
+  .about-content h2 {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .about-content p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  .about-content ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .about-content ul li {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  /* Button Styling */
+  .learn-more {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .learn-more:hover {
+    background-color: #0056b3;
+  }
 
-}
 
-/* Optional: You can customize the hover effect or other visual cues for attendance */
-.react-calendar__tile:hover {
-  opacity: 0.7;
-}
+  /* footer */
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
+  .footer {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 40px 10%;
+    text-align: center;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #444;
+  }
+  
+  /* Footer Sections */
+  .footer-section {
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  .footer-section h2,
+  .footer-section h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+  
+  .footer-section p {
+    font-size: 16px;
+    color: #bbb;
+  }
+  
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-section ul li {
+    margin: 8px 0;
+  }
+  
+  .footer-section ul li a {
+    text-decoration: none;
+    color: #bbb;
+    transition: 0.3s;
+  }
+  
+  .footer-section ul li a:hover {
+    color: #007bff;
+  }
+  
+  /* Social Media Links */
+  .footer-social {
+    margin-top: 20px;
+  }
+  
+  .footer-social a {
+    color: #bbb;
+    font-size: 20px;
+    margin: 0 10px;
+    transition: 0.3s;
+  }
+  
+  .footer-social a:hover {
+    color: #007bff;
+  }
+  
+/* owner */
+  .owner-section {
+    height: auto;
+    padding: 60px 10%;
+  }
+  
+  .owner-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+  }
+  
 
-th, td {
-  padding: 10px;
-  text-align: center;
-}
+  .owner-image{
+    width: 80%;
+    max-width: 300px;
+  }
+  .owner-image img {
+    width: auto;
+    height: 300px;
+    border-radius: 300px;
+    border: 2px solid black;
+  
+  }
+  
+  .owner-description {
+    flex: 2;
+    text-align: left;
+  }
+  
+  .owner-description h2 {
+    font-size: 32px;
+    color: #333;
+  }
+  
+  .owner-description h3 {
+    font-size: 24px;
+    color: #007bff;
+    margin-bottom: 10px;
+  }
+  
+  .owner-description p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+  }
 
-th {
-  background-color: #f2f2f2;
-}
-
-tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-
-
-.home-container {
-  background-color: #f5f5f5; /* Optional, in case you want to add a light background for other sections */
-}
-
-/* Location Section */
+  /* Location Section */
 .location-section {
-  padding: 40px 20px;
+  padding: 60px 10%;
   background-color: #f9f9f9;
   text-align: center;
 }
 
 .location-title {
-  font-size: 2rem;
+  font-size: 32px;
   color: #333;
   margin-bottom: 20px;
+  font-weight: bold;
 }
 
 .map-container {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto 20px auto;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 
+.map-container iframe {
+  width: 48%;
+  height: 400px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: none;
+}
+
+/* Address Styling */
 .location-address {
-  font-size: 1.2rem;
+  margin-top: 20px;
+  font-size: 18px;
   color: #555;
-  margin-top: 10px;
-  line-height: 1.5;
+  line-height: 1.6;
+  font-weight: 500;
 }
 
-/* Responsive Styling */
+/* Responsive Design */
 @media (max-width: 768px) {
+  .location-section {
+    padding: 40px 5%;
+  }
+
   .location-title {
-      font-size: 1.8rem;
+    font-size: 28px;
   }
 
   .map-container {
-      margin: 0 auto 10px auto;
-      height: 300px; /* Adjust height for smaller screens */
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .map-container iframe {
+    width: 100%;
+    height: 300px;
   }
 
   .location-address {
-      font-size: 1rem;
+    font-size: 16px;
   }
 }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .owner-container {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .owner-description {
+      text-align: center;
+    }
+  }
 
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .footer-content {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .about-container {
+      height: auto;
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .about-content h2 {
+      font-size: 28px;
+    }
+  
+    .about-content p {
+      font-size: 16px;
+    }
+    .about-image {
+     display: none;
+    }
+  }
 @media (max-width: 480px) {
-  .location-title {
-      font-size: 1.5rem;
-  }
 
-  .map-container {
-      height: 250px;
-  }
-
-  .location-address {
-      font-size: 0.9rem;
-  }
 }
 
 
@@ -131,4 +348,5 @@ tr:nth-child(even) {
     font-weight: 700;
     color: rgb(255, 252, 252);
   }
+
 }

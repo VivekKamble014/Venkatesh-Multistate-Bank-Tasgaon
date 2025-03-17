@@ -1,47 +1,72 @@
-/* Full-screen container */
+/* Full-page styling */
 .login-page {
-  background: url('../assets/banklog.jpg') no-repeat center center/cover;
   height: 100vh;
-  
   display: flex;
   justify-content: center;
   align-items: center;
-
   padding: 20px;
+  background-color: #f4f7fc; /* Light background for a professional feel */
 }
 
-/* Container for both image and form */
+/* Main container */
 .login-container {
   display: flex;
   align-items: center;
   background: white;
-  padding: 30px;
+  padding: 40px;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  max-width: 850px;
-  width: 90%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: all 0.3s ease-in-out;
+  max-width: 1000px;
+  width: 100%;
 }
 
 /* Left-side image */
+/* Left-side image */
 .login-image {
-  max-width: 400px;
-  height: 400px;
-  margin-right: 20px;
+  flex: 1;
+  max-width: 500px; /* Increased size */
+  width: 100%;
+  height: auto; /* Ensures aspect ratio remains */
+  margin-right: 40px;
+  object-fit: cover;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+  .login-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px;
+  }
+
+  .login-image {
+    width: 80%;
+    max-width: 400px; /* Bigger image for medium screens */
+    margin: 0 auto 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .login-image {
+    width: 100%;
+    max-width: 350px; /* Even larger on smaller screens */
+  }
 }
 
 /* Right-side login form */
 .login-content {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
 }
 
 /* Form styling */
 .login-form {
   width: 100%;
+  max-width: 350px;
 }
 
 /* Form group styling */
@@ -54,8 +79,8 @@
 /* Label styling */
 .form-group label {
   display: block;
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 16px;
+  font-weight: 600;
   margin-bottom: 5px;
   color: #333;
 }
@@ -63,18 +88,19 @@
 /* Input fields */
 .form-group input {
   width: 100%;
-  padding: 10px;
-  font-size: 14px;
+  padding: 12px;
+  font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 6px;
   outline: none;
   transition: all 0.3s ease-in-out;
+  background-color: #f9f9f9;
 }
 
 /* Input focus effect */
 .form-group input:focus {
   border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
 }
 
 /* Login button */
@@ -86,9 +112,9 @@
   color: white;
   background-color: #007bff;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease-in-out;
 }
 
 /* Button hover effect */
@@ -96,23 +122,10 @@
   background-color: #0056b3;
 }
 
-/* Register link */
-.register-link {
-  font-size: 14px;
-  margin-top: 10px;
-  color: #555;
-}
-
-/* Link styling */
-.register-link a {
-  color: #007bff;
-  text-decoration: none;
-  font-weight: bold;
-}
 /* Forgot password styling */
 .forgot-password {
   text-align: right;
-  margin-bottom: 10px;
+  width: 100%;
 }
 
 .forgot-password a {
@@ -125,33 +138,138 @@
 .forgot-password a:hover {
   text-decoration: underline;
 }
+
+/* Register link */
+.register-link {
+  font-size: 14px;
+  margin-top: 10px;
+  color: #555;
+}
+
+.register-link a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+/* Employee/Admin Toggle */
+.toggle-container {
+  display: flex;
+  width: 100%;
+  max-width: 350px;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  gap: 10px;
+}
+
+.toggle-container button {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.toggle-container button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.toggle-container button:hover {
+  background-color: #0056b3;
+  color: white;
+}
+
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .login-container {
-    margin-top: 30px;
     flex-direction: column;
-    padding: 20px;
     text-align: center;
+    padding: 30px;
   }
-  
+
   .login-image {
+    width: 70%;
     max-width: 250px;
-    margin-bottom: 15px;
+    margin: 0 auto 20px;
+  }
+
+  .toggle-container {
+    max-width: 100%;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .login-container {
     width: 100%;
-    padding: 15px;
+    padding: 20px;
+    box-shadow: none;
   }
 
   .login-image {
-    max-width: 150px;
-    max-height: 150px;
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .form-group input {
+    font-size: 14px;
+    padding: 10px;
   }
 
   .login-button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+
+/* Admin OTP Button */
+.otp-button {
+  margin: 10px;
+  width: 100%;
+  max-width: 200px; /* Keeps button size manageable */
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #ff5722; /* Professional orange color */
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effect */
+.otp-button:hover {
+  background-color: #e64a19; /* Darker shade on hover */
+}
+
+/* Active (click) effect */
+.otp-button:active {
+  background-color: #d84315;
+  transform: scale(0.98);
+}
+
+/* Disabled button when OTP is sent */
+.otp-button:disabled {
+  background-color: #bdbdbd;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .otp-button {
+    width: 100%;
+    max-width: 180px; /* Smaller button for mobile */
     font-size: 14px;
     padding: 10px;
   }

@@ -104,59 +104,13 @@ const verifyEmail = asyncHandler(async (req, res) => {
   user.verificationTokenExpire = undefined;
 
   await user.save();
-
-  res.status(200).json({ success: true, message: "Email verified successfully" });
+  
+  //res.status(200).json({ success: true, message: "Email verified successfully" });
+  res.redirect(`${process.env.FRONTEND_URL}/verify-email?success=true`);
 });
 
-// ✅ Login User
-// const loginUser = asyncHandler(async (req, res) => {
-//   try {
-//     console.log("Login Request:", req.body);
 
-//     const { email, password } = req.body;
 
-//     if (!email || !password) {
-//       return res.status(400).json({ message: "Email and password are required" });
-//     }
-
-//     // Convert email to lowercase for consistency
-//     const normalizedEmail = email.toLowerCase();
-
-//     // Find user
-//     const user = await User.findOne({ email: normalizedEmail });
-
-//     console.log("Found User:", user);
-
-//     if (!user) {
-//       return res.status(400).json({ message: "Invalid email or password" });
-//     }
-
-//     if (!user.isVerified) {
-//       return res.status(403).json({ message: "Please verify your email before logging in." });
-//     }
-
-//     // Compare hashed passwords
-//     const isMatch = await bcrypt.compare(password, user.password);
-//     console.log("Password Match:", isMatch);
-
-//     if (!isMatch) {
-//       return res.status(400).json({ message: "Invalid email or password" });
-//     }
-
-//     // Generate JWT Token
-//     const token = generateToken(user._id);
-
-//     res.status(200).json({
-//       success: true,
-//       message: "Login successful",
-//       token,
-//       user: { id: user._id, email: user.email, isVerified: user.isVerified },
-//     });
-//   } catch (error) {
-//     console.error("Login Error:", error);
-//     res.status(500).json({ message: "Server Error" });
-//   }
-// });
 
 const loginUser = asyncHandler(async (req, res) => {
   try {

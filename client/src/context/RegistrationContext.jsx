@@ -20,7 +20,7 @@ export const RegistrationProvider = ({ children }) => {
       Taluka: "",
       Pincode: "",
     },
-    BankBranch: "Venkatesh Multistate Bank Tasgaon",
+    BankBranch: " Venkatesh Multistate Bank ,Tasgaon ",
     Department: "",
     JobRole: "",
     VehicleOwnership: "",

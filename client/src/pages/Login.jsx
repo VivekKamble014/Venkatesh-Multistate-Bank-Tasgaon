@@ -1,67 +1,85 @@
+
+// export default Login;
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/Login.css";
-import loginImg from "../assets/LoginImage.jpg";
+import loginImg from "../assets/login.jpg";
 
 const Login = () => {
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [formData, setFormData] = useState({ email: "", password: "", otp: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); // Hook for redirection
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [otpSent, setOtpSent] = useState(false); // ✅ Track OTP request state
+  const navigate = useNavigate();
 
   // Handle form input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // ✅ Send OTP to Admin Email
+  const handleSendOtp = async () => {
+    try {
+      await axios.post("http://localhost:5010/send-otp", {
+        email: formData.email,
+      });
+      setOtpSent(true);
+      setError("");
+      console.log("✅ OTP Sent Successfully");
+    } catch (error) {
+      setError("Failed to send OTP. Try again.");
+    }
+  };
 
+  // ✅ Handle Login Submission
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError("");
-  
+
     try {
+      if (isAdmin) {
+        // ✅ Admin Login using OTP
+        const response = await axios.post("http://localhost:5010/verify-otp", {
+          email: formData.email,
+          otp: formData.otp, // Use OTP instead of password
+        });
+
+        localStorage.setItem("authToken", response.data.token);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+
+        console.log("✅ Admin logged in. Redirecting to Admin Dashboard...");
+        navigate("/AdminDashboard");
+        return;
+      } 
+
+      // ✅ Employee Login using Email & Password
       const response = await axios.post("http://localhost:5010/api/auth/login", {
         email: formData.email,
         password: formData.password,
       });
-  
+
       const { token, user } = response.data;
       localStorage.setItem("authToken", token);
       localStorage.setItem("user", JSON.stringify(user));
-      localStorage.setItem("userEmail", user.email);  // ✅ Store userEmail explicitly
-  
-      // ✅ Check if employee exists in the database
+
+      // ✅ Employee Dashboard Redirection
       try {
-        const employeeCheckResponse = await axios.get(
-          "http://localhost:5010/api/employees", // Ensure correct API route
-          { params: { email: formData.email } }
-        );
-  
-        console.log("✅ Employee Check Response:", employeeCheckResponse.data);
-  
-        // Explicitly log fullName before checking
-        console.log("✅ Found fullName:", employeeCheckResponse.data.fullName);
-  
-        if (employeeCheckResponse.data && employeeCheckResponse.data.email) {
-          console.log("✅ Employee exists. Redirecting to EmployeeDashboard...");
+        const employeeCheckResponse = await axios.get("http://localhost:5010/api/employees", {
+          params: { email: formData.email },
+        });
+
+        if (employeeCheckResponse.data && employeeCheckResponse.data.profileUpdate==true) {
           navigate("/EmployeeDashboard");
-          return;
-           // ✅ Prevent further execution
         } else {
-          console.log("⚠️ Employee exists, but missing fullName. Redirecting to EmployeeDetails...");
           navigate("/EmployeeDetails");
-          return; // ✅ Prevent further execution
         }
-      } catch (employeeCheckError) {
-        console.log("⚠️ Employee not found in database. Redirecting to EmployeeDetails...");
+      } catch {
         navigate("/EmployeeDetails");
-        return; // ✅ Prevent further execution
       }
-  
     } catch (error) {
-      console.error("Login Error:", error.response?.data?.message);
       setError(error.response?.data?.message || "Login failed");
     } finally {
       setLoading(false);
@@ -74,54 +92,85 @@ const Login = () => {
         <img src={loginImg} alt="Login Illustration" className="login-image" />
 
         <div className="login-content">
-          <h1>Employee Login</h1>
+        <div className="toggle-container">
+            <button className={!isAdmin ? "active" : ""} onClick={() => setIsAdmin(false)}>
+              Employee SignIn
+            </button>
+            <button className={isAdmin ? "active" : ""} onClick={() => setIsAdmin(true)}>
+              Admin SignIn
+            </button>
+          </div>
 
-          {/* Display error messages */}
-           {error && <p className="error-message">{error}</p>} 
+          <h1>{isAdmin ? "Admin SignIn" : "Employee SignIn"}</h1>
+
+          {error && <p className="error-message">{error}</p>}
+
+       
 
           <form className="login-form" onSubmit={handleLogin}>
             <div className="form-group">
               <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Enter your email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
+              <input type="email" id="email" name="email" placeholder="Enter your email"
+                value={formData.email} onChange={handleChange} required />
             </div>
 
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Enter your password"
-                value={formData.password}
-                onChange={handleChange}
-                required
-              />
-            </div>
+            {/* ✅ Employee Login - Password Field */}
+            {!isAdmin && (
+              <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password"
+                  value={formData.password} onChange={handleChange} required />
 
-            {/* Forgot Password Link */}
-            <p className="forgot-password">
-              <Link to="/forgot-password">Forgot Password?</Link>
-            </p>
+              </div>
+              
+            )}
 
+            {/* ✅ Admin Login - OTP Handling */}
+            {isAdmin && otpSent && (
+              <div className="form-group">
+                <label htmlFor="otp">Enter OTP</label>
+                <input type="text" id="otp" name="otp" placeholder="Enter OTP"
+                  value={formData.otp} onChange={handleChange} required />
+              </div>
+            )}
+
+            {/* Admin OTP Button */}
+            {isAdmin && !otpSent && (
+              <button type="button" className="otp-button" onClick={handleSendOtp}>
+                Send OTP
+              </button>
+            )}
+
+            {/* Forgot Password */}
+            {!isAdmin && (
+              <div>
+
+
+              <p className="forgot-password">
+                <Link to="/forgot-password">Forgot Password?</Link>
+              </p>
+        
+              </div>
+            )}
+
+            {/* Login Button */}
             <button type="submit" className="login-button" disabled={loading}>
-              {loading ? "Logging in..." : "Login"}
+              {loading ? "Logging in..." : isAdmin ? "Verify OTP" : "Login"}
             </button>
           </form>
-
-          <p className="register-link">
-            Don't have an account? <Link to="/signup">Register here</Link>
+          {!isAdmin && (
+             
+            <p className="register-link">
+            Don't have an account? <Link to="/signup">SignUp here</Link>
           </p>
+            
+            )}
+
         </div>
       </div>
+    
     </div>
+    
   );
 };
 

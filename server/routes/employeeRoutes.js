@@ -1,40 +1,14 @@
 import express from "express";
-import { createEmployee, getEmployeeById } from "../controllers/employeeController.js";
+import { updateProfileDetails, getEmployeeById } from "../controllers/employeeController.js";
+import User from "../models/User.js"; // Import the Employee model
 import Employee from "../models/Employee.js"; // Import the Employee model
 
 
 
 const router = express.Router();
 
-router.post("/", createEmployee);
+router.post("/", updateProfileDetails);
 router.get("/:id", getEmployeeById);
-
-// Corrected route for fetching employees by email
-// router.get("/", async (req, res) => {
-//     const { email } = req.query;
-
-//     try {
-//         if (!email) {
-//             return res.status(400).json({ message: "Email query parameter is required" });
-//         }
-
-//         console.log("Searching for email:", email); // ✅ Debugging
-
-//         const employee = await Employee.findOne({ email });
-
-
-//         console.log("Database result:", employee); // ✅ Debugging
-
-//         if (employee) {
-//             res.json({ email: employee.email });
-//         } else {
-//             res.status(404).json({ message: "Employee not found" });
-//         }
-//     } catch (error) {
-//         console.error("Error checking email:", error.message);
-//         res.status(500).json({ error: "Internal server error" });
-//     }
-// });
 
 
 // 📌 Route to get an employee by email
@@ -49,7 +23,7 @@ router.get("/", async (req, res) => {
         console.log("🔍 Searching for email:", email);
 
         // ✅ Use the correct model and fetch full data
-        const employee = await Employee.findOne({ email }).lean(); // Convert to plain object
+        const employee = await User.findOne({ email }).lean(); // Convert to plain object
 
         console.log("✅ Database result:", employee);
 

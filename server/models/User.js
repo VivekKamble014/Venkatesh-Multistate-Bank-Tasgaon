@@ -1,14 +1,19 @@
 const mongoose = require("mongoose");
 const crypto = require("crypto");
+const { type } = require("os");
 
 const UserSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  profileUpdate : {type: Boolean, default: false},
+  isAdmin : {type: Boolean, default: false},
   isVerified: { type: Boolean, default: false },
+  otp: { type: String, default: null },  // ✅ Ensure default value
+  otpExpires: { type: Number, default: null }, // ✅ Store as timestamp
+  otpVerification:{type: Boolean, default: false},
   verificationToken: String,
   verificationTokenExpire: Date,
 });
-
 // ✅ Method to Generate Email Verification Token
 UserSchema.methods.getVerificationToken = function () {
   const token = crypto.randomBytes(32).toString("hex");

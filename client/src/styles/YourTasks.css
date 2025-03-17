@@ -92,6 +92,11 @@ h2 {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .tasks-container {
+        padding-top: 60px;
+        margin-left: 0;
+      
+    }
     .tasks-content {
         padding: 10px;
     }
