@@ -3,6 +3,7 @@ import { updateProfileDetails, getEmployeeById } from "../controllers/employeeCo
 import User from "../models/User.js"; // Import the Employee model
 import Employee from "../models/Employee.js"; // Import the Employee model
 
+import  authMiddleware from "../middlewares/authMiddleware.js"; // Import auth middleware
 
 
 const router = express.Router();
@@ -38,5 +39,37 @@ router.get("/", async (req, res) => {
         return res.status(500).json({ error: "Internal server error" });
     }
 });
+
+
+// Update profileUpdate field to false
+router.patch("/updateProfileStatus", authMiddleware, async (req, res) => {
+    try {
+      const { email, profileUpdate } = req.body;
+  
+      if (!email) {
+        return res.status(400).json({ message: "Email is required." });
+      }
+  
+      // Find the employee by email and update profileUpdate field
+      const updatedEmployee = await Employee.findOneAndUpdate(
+        { email: email },
+        { $set: { profileUpdate: profileUpdate } },
+        { new: true } // Return updated document
+      );
+  
+      if (!updatedEmployee) {
+        return res.status(404).json({ message: "Employee not found." });
+      }
+  
+      res.status(200).json({ message: "Profile update status changed successfully.", employee: updatedEmployee });
+    } catch (error) {
+      console.error("Error updating profile status:", error);
+      res.status(500).json({ message: "Internal server error." });
+    }
+  });
+
+
+
+
 
 export default router;

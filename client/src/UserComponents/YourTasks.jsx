@@ -1,41 +1,62 @@
 import React, { useState, useEffect } from "react";
-import Sidebar from "./Sidebar"; // Import Sidebar component
-import "../styles/YourTasks.css"; // Import CSS for styling
+import axios from "axios";
+import Sidebar from "./Sidebar";
+import "../styles/YourTasks.css";
 
 export default function YourTasks() {
-  // Sample Tasks
-  const [tasks, setTasks] = useState([
-    { id: 1, title: "Complete Bank Report", status: "Pending", date: "2025-03-05" },
-    { id: 2, title: "Schedule Employee Meeting", status: "Pending", date: "2025-03-05" },
-    { id: 3, title: "Update Attendance Records", status: "Completed", date: "2025-03-05" },
-    { id: 4, title: "Submit Financial Audit", status: "Pending", date: "2025-03-06" },
-    { id: 5, title: "Review Loan Applications", status: "Completed", date: "2025-03-06" },
-  ]);
+  const [tasks, setTasks] = useState([]);
 
-  // Function to Toggle Task Status
-  const toggleTaskStatus = (id) => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
-        task.id === id
-          ? { ...task, status: task.status === "Pending" ? "Completed" : "Pending" }
-          : task
-      )
-    );
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+
+    if (storedUser) {
+      const { email } = JSON.parse(storedUser);
+
+      axios
+        .get("http://localhost:5010/api/by-email", {
+          params: { email },
+        })
+        .then((res) => setTasks(res.data))
+        .catch((err) => console.error("Error fetching tasks:", err));
+    }
+  }, []);
+
+  // ✅ Properly placed async function
+  const toggleTaskStatus = async (id) => {
+    const taskToUpdate = tasks.find((task) => task._id === id);
+    const newStatus = taskToUpdate.status === "Pending" ? "Completed" : "Pending";
+
+    try {
+      const res = await axios.put(`http://localhost:5010/api//updatetask/${id}`, {
+        status: newStatus,
+        completedAt: newStatus === "Completed" ? new Date() : null,
+
+      });
+
+      setTasks((prevTasks) =>
+        prevTasks.map((task) =>
+          task._id === id ? { ...task, status: newStatus } : task
+        )
+      );
+    } catch (error) {
+      console.error("Error updating task status:", error);
+      alert("Failed to update task status. Please try again.");
+    }
   };
 
-  // Function to group tasks by date and calculate totals
   const generateTaskSummary = () => {
     const summary = {};
 
     tasks.forEach((task) => {
-      if (!summary[task.date]) {
-        summary[task.date] = { total: 0, completed: 0, pending: 0 };
+      const date = task.createdAt?.split("T")[0];
+      if (!summary[date]) {
+        summary[date] = { total: 0, completed: 0, pending: 0 };
       }
-      summary[task.date].total++;
+      summary[date].total++;
       if (task.status === "Completed") {
-        summary[task.date].completed++;
+        summary[date].completed++;
       } else {
-        summary[task.date].pending++;
+        summary[date].pending++;
       }
     });
 
@@ -50,64 +71,64 @@ export default function YourTasks() {
 
   return (
     <div className="tasks-container">
-      <Sidebar /> {/* Fixed Sidebar */}
+      <Sidebar />
 
       <div className="tasks-content">
         <h2>Task Manager</h2>
 
-        {/* Task List */}
         {tasks.length === 0 ? (
           <p>No tasks available.</p>
         ) : (
           <ul className="task-list">
-            {tasks.map((task) => (
-              <li key={task.id} className={`task-item ${task.status.toLowerCase()}`}>
-                <span className="task-title">{task.title}</span>
-                <div className="task-actions">
-                  <button
-                    className="task-btn completed"
-                    onClick={() => toggleTaskStatus(task.id)}
-                    disabled={task.status === "Completed"}
-                  >
-                    Completed
-                  </button>
-                  <button
-                    className="task-btn pending"
-                    onClick={() => toggleTaskStatus(task.id)}
-                    disabled={task.status === "Pending"}
-                  >
-                    Pending
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
+  {[...tasks]
+    .sort((a, b) => (a.status === "Completed" ? 1 : -1)) // move completed to bottom
+    .map((task) => {
+      const createdDate = new Date(task.createdAt).toLocaleDateString();
+      const dueDate = task.dueDate
+        ? new Date(task.dueDate).toLocaleDateString()
+        : "N/A";
 
-        {/* Task Summary Table */}
-        <h2>Task Summary</h2>
-        <table className="task-summary">
-          <thead>
-            <tr>
-              <th>Sr No</th>
-              <th>Date</th>
-              <th>Total Tasks Assigned</th>
-              <th>Completed Tasks</th>
-              <th>Pending Tasks</th>
-            </tr>
-          </thead>
-          <tbody>
-            {generateTaskSummary().map((row) => (
-              <tr key={row.srNo}>
-                <td>{row.srNo}</td>
-                <td>{row.date}</td>
-                <td>{row.totalTasks}</td>
-                <td>{row.completedTasks}</td>
-                <td>{row.pendingTasks}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      return (
+        <li key={task._id} className={`task-item ${task.status.toLowerCase()}`}>
+          <div className="task-info">
+            <h3 className="task-title">{task.taskTitle}</h3>
+            <p className="task-description">{task.taskDescription}</p>
+          </div>
+          <div className="task-dates">
+            <p>
+              <strong>Created:</strong> {createdDate}
+            </p>
+            <p>
+              <strong>Due:</strong> {dueDate}
+            </p>
+          </div>
+          {task.completedAt && (
+  <p>
+    <strong>Completed:</strong>{" "}
+    {new Date(task.completedAt).toLocaleDateString()}
+  </p>
+)}
+          <div className="task-actions">
+            <button
+              className="task-btn completed"
+              onClick={() => toggleTaskStatus(task._id)}
+              disabled={task.status === "Completed"}
+            >
+              ✅ Mark as Complete
+            </button>
+            <button
+              className="task-btn pending"
+              onClick={() => toggleTaskStatus(task._id)}
+              disabled={task.status === "Pending"}
+            >
+              ❌ Mark Not Done
+            </button>
+          </div>
+        </li>
+      );
+    })}
+</ul>
+        )}
       </div>
     </div>
   );

@@ -1,0 +1,147 @@
+.see-notification-page {
+    margin-left: 15%;
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  .see-notification-content {
+    flex: 1;
+    padding: 30px;
+    background-color: #f9f9f9;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .search-btn {
+    padding: 10px 20px;
+    background-color: #007bfc;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .notifications-list {
+    margin-top: 30px;
+  }
+  
+  .notification-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+  }
+  .see-notification-page {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f0f2f5;
+  }
+  
+  .see-notification-content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  select, .search-btn {
+    padding: 8px;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .search-btn {
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .notifications-list {
+    margin-top: 30px;
+  }
+  
+  .notification-card {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+  }
+  .notification-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 15px 0;
+    padding: 15px;
+    background: #f9f9f9;
+    position: relative;
+  }
+  
+  .delete-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .delete-btn:hover {
+    background-color: #c0392b;
+  }
+  .button-group {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+  }
+  
+  .refresh-btn, .export-btn, .search-btn, .delete-btn {
+    padding: 8px 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .refresh-btn {
+    background-color: #f0ad4e;
+    color: white;
+  }
+  
+  .export-btn {
+    background-color: #5bc0de;
+    color: white;
+  }
+  
+  .search-btn {
+    background-color: #5cb85c;
+    color: white;
+  }
+  
+  .delete-btn {
+    background-color: #d9534f;
+    color: white;
+  }
+  
+  .notification-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #fafafa;
+    box-shadow: 0 0 6px rgba(0,0,0,0.1);
+  }

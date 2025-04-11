@@ -3,12 +3,13 @@ import '../styles/PhotoGallery.css';
 import g1 from '../assets/g1.png';
 import g2 from '../assets/g2.png';
 import g3 from '../assets/g3.png';
-import imgCopy2 from '../assets/image copy 2.png';
-import imgCopy4 from '../assets/image copy 4.png';
-import imgCopy from '../assets/image copy.png';
+import g4 from '../assets/g4.png';
+import g5 from '../assets/g5.png';
+import g6 from '../assets/g6.png';
+
 
 export default function PhotoGallery() {
-    const images = [g1, g2, g3, imgCopy2 ];
+    const images = [g1, g2, g3, g4,g5, g6 ];
 
     return (
         <section className="gallery-section">

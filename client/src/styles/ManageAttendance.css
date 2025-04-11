@@ -1,0 +1,92 @@
+.manage-attendance-page{
+  margin-left: 15%;
+  padding: 20px;
+}
+.attendance-table-container {
+  margin-top: 30px;
+  overflow-x: auto;
+}
+
+.attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.attendance-table th,
+.attendance-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.attendance-table th {
+  background-color: #f4f4f4;
+  text-align: left;
+}
+.action-btn {
+  padding: 6px 10px;
+  margin: 2px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+.action-btn.mark {
+  background-color: #2e7d32;
+  color: white;
+}
+
+.action-btn.edit {
+  background-color: #0288d1;
+  color: white;
+}
+
+.action-btn.delete {
+  background-color: #c62828;
+  color: white;
+}
+.refresh-btn,
+.export-btn {
+  margin: 10px 5px;
+  padding: 6px 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.refresh-btn:hover,
+.export-btn:hover {
+  background-color: #218838;
+}
+
+th {
+  cursor: pointer;
+}
+
+th:hover {
+  color: #007bff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .manage-attendance-page {
+    margin-left: 0;
+    margin-top: 8%;
+    padding: 1rem;
+  }
+ 
+}
+
+@media (max-width: 600px) {
+  .manage-attendance-page {
+    margin-top: 10%;
+
+    margin-left: 0;
+    padding: 1rem;
+  }
+
+
+}

@@ -1,0 +1,106 @@
+
+
+.calender{
+    width: 100%;
+}
+
+.calendar-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 25px;
+    background: white;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+    text-align: center;
+  }
+  
+  h3 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .react-calendar {
+    width: 100%;
+    max-width: 700px;
+  
+    background: #fff;
+    border: none;
+    font-family: "Arial", sans-serif;
+  }
+  
+  .react-calendar__tile {
+    text-align: center;
+    padding: 15px !important;
+    font-size: 1rem !important;
+    transition: background 0.3s, color 0.3s;
+    border-radius: 10px !important;
+  }
+  
+/* ✅ Green for Present Days */
+.present-day {
+    background-color: #00C49F !important;
+    color: white !important;
+
+    font-weight: bold;
+}
+
+/* ❌ Red for Absent Days */
+.absent-day {
+    background-color: #FF4444 !important;
+    color: white !important;
+ 
+    font-weight: bold;
+}
+  
+  /* Hover Effect */
+  .react-calendar__tile:hover {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  /* Legend Section */
+  .legend {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+  }
+  
+  .legend-item {
+    padding: 6px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  
+  .present {
+    background-color: #00C49F;
+    color: white;
+  }
+  
+  .absent {
+    background-color: #FF4444;
+    color: white;
+  }
+  
+  /* 📱 Responsive Styling */
+  @media (max-width: 768px) {
+    .calendar-container {
+      max-width: 90%;
+      padding: 20px;
+    }
+  
+    .react-calendar {
+      max-width: 100%;
+    }
+  
+    .react-calendar__tile {
+      font-size: 0.9rem !important;
+      padding: 12px !important;
+    }
+  
+    .legend-item {
+      padding: 5px 15px;
+      font-size: 0.9rem;
+    }
+  }

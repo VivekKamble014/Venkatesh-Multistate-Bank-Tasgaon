@@ -98,15 +98,58 @@ const talukasByDistrict = {
 };
 
 
-const departments = ["Sales", "Marketing", "Finance", "HR", "IT"];
-const jobRolesByDepartment = {
-  Sales: ["Sales Representative", "Sales Manager", "Account Executive"],
-  Marketing: ["Marketing Coordinator", "Marketing Manager", "Digital Marketer"],
-  Finance: ["Accountant", "Financial Analyst", "Finance Manager"],
-  HR: ["HR Assistant", "HR Manager", "Recruiter"],
-  IT: ["Software Developer", "System Administrator", "Database Administrator"],
-};
+// const departments = ["Sales", "Marketing", "Finance", "HR", "IT"];
+// const jobRolesByDepartment = {
+//   Sales: ["Sales Representative", "Sales Manager", "Account Executive"],
+//   Marketing: ["Marketing Coordinator", "Marketing Manager", "Digital Marketer"],
+//   Finance: ["Accountant", "Financial Analyst", "Finance Manager"],
+//   HR: ["HR Assistant", "HR Manager", "Recruiter"],
+//   IT: ["Software Developer", "System Administrator", "Database Administrator"],
+// };
 
+const departments = ["Customer Service", "Loans", "Accounts", "Finance", "IT", "HR", "Operations"];
+
+const jobRolesByDepartment = {
+  "Customer Service": [
+    "Customer Service Representative",
+    "Branch Relationship Manager",
+    "Teller"
+  ],
+  "Loans": [
+    "Loan Officer",
+    "Credit Analyst",
+    "Loan Processing Specialist",
+    "Branch Manager",
+    "Sales Exicative"
+
+  ],
+  "Accounts": [
+    "Account Manager",
+    "Account Assistant",
+    "Reconciliation Specialist"
+  ],
+  "Finance": [
+    "Bank Auditor",
+    "Financial Analyst",
+    "Treasury Manager"
+    
+  ],
+  "IT": [
+    "Core Banking System Administrator",
+    "Software Developer",
+    "IT Support Technician"
+  ],
+  "HR": [
+    "HR Executive",
+    "Recruiter",
+    "Payroll Officer"
+  ],
+  "Operations": [
+    "Operations Manager",
+    "Compliance Officer",
+    "Risk Analyst"
+  ]
+};
 
 export default function EmployeeDetails() {
   const navigate = useNavigate();

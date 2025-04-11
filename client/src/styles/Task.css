@@ -1,0 +1,153 @@
+/* Tasks.css */
+
+/* Container */
+.Taskspage{
+    margin-left: 15%;
+    padding: 20px;
+
+}
+button{
+    margin: 15px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    color: black;
+    background-color: #4d9bee;
+    border: 1px solid black;
+}
+.task-container {
+   
+    padding: 20px;
+    margin-top: 20px;
+    max-width: 100%;
+  }
+  
+  .task-container h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+  }
+  
+  /* Email dropdown and clear button */
+  .task-controls {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .task-controls select {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .taskcontrol  {
+    padding: 8px 16px;
+    background-color: #ef4444;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .task-controls button:hover {
+    background-color: #dc2626;
+  }
+  
+  /* Table styles */
+  .task-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow-x: auto;
+  }
+  
+  .task-table th,
+  .task-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    font-size: 14px;
+  }
+  
+  .task-table th {
+    background-color: #f3f4f6;
+    font-weight: bold;
+  }
+  
+  .task-table tr:nth-child(even) {
+    background-color: #fafafa;
+  }
+  
+  /* Button in table */
+  .task-table button {
+    padding: 6px 10px;
+    background-color: #10b981;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .task-table button:hover {
+    background-color: #059669;
+  }
+  .task-table-wrapper {
+    overflow-x: scroll;
+    width: 100%;
+  }
+  
+  .task-table {
+    min-width: 100%; /* or whatever width you expect */
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .taskcontrol {
+    padding: 6px 10px;
+    margin: 2px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .taskcontrol.delete-btn {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .taskcontrol.edit-btn {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+
+    .Taskspage{
+        margin-top: 15%;
+        margin-left: 0;
+        padding: 20px;
+    
+    }
+    .task-container {
+      margin-left: 0;
+      padding: 10px;
+    }
+  
+    .task-controls {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .task-table {
+      display: block;
+      overflow-x: auto;
+    }
+    
+  .task-table td {
+    padding: 5px;
+    text-align: left;
+    font-size: 10px;
+  }
+  }

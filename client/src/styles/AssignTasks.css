@@ -1,0 +1,195 @@
+/* Main layout */
+.maindiv {
+    margin-top: 3%;
+    margin-left: 15%;
+    width: 85%;
+    height: 100vh;
+    padding-inline: 20px;
+    padding-block: 20px;
+    box-sizing: border-box;
+    background-color: #f4f6f8;
+    overflow-y: auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  /* Content container */
+  .task-container {
+    
+    flex-grow: 1;
+  }
+  
+  /* Page title */
+  .page-title {
+    
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  /* Dropdown section */
+  .dropdown-container {
+    margin-bottom: 1.5rem;
+  }
+  
+  .dropdown-label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .dropdown-select {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 300px;
+    font-size: 1rem;
+  }
+  
+  /* Button group */
+  .button-group {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .button-group button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #0d6efd;
+    color: white;
+    font-size: 0.95rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .button-group button:hover {
+    background-color: #084bb5;
+  }
+  
+  /* Loading & error */
+  .loading-text,
+  .error-text,
+  .no-employees {
+    font-size: 1rem;
+    margin-top: 1rem;
+    color: #555;
+  }
+  
+  /* Employee table */
+  .employee-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  
+  .employee-table th,
+  .employee-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    font-size: 0.95rem;
+  }
+  
+  .employee-table th {
+    background-color: #f0f2f5;
+    font-weight: 600;
+    color: #444;
+  }
+  
+  .employee-table tbody tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .employee-table button {
+    background-color: #28a745;
+    border: none;
+    color: white;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .employee-table button:hover {
+    background-color: #218838;
+  }
+  
+  /* Responsive Design */
+  
+  /* Tablets */
+  @media (max-width: 992px) {
+    .maindiv {
+      margin-left: 0;
+      width: 100%;
+      padding: 15px;
+    }
+  
+    .dropdown-select {
+      max-width: 100%;
+    }
+  
+    .employee-table th,
+    .employee-table td {
+      font-size: 0.9rem;
+    }
+  
+    .button-group {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+  
+  /* Mobile Devices */
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 1.5rem;
+    }
+  
+    .employee-table th,
+    .employee-table td {
+      font-size: 0.85rem;
+      padding: 0.5rem;
+    }
+  
+    .button-group {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    .button-group button {
+      width: 100%;
+    }
+  }
+  
+  /* Small Devices */
+  @media (max-width: 480px) {
+    .dropdown-label {
+      font-size: 0.9rem;
+    }
+  
+    .dropdown-select {
+      font-size: 0.9rem;
+    }
+  
+    .page-title {
+      font-size: 1.3rem;
+    }
+  
+    .employee-table {
+      font-size: 0.8rem;
+    }
+  
+    .employee-table th,
+    .employee-table td {
+      padding: 0.4rem;
+    }
+  }

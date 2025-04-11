@@ -34,29 +34,30 @@ const Login = () => {
   };
 
   // ✅ Handle Login Submission
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
+const handleLogin = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  setError("");
 
-    try {
-      if (isAdmin) {
-        // ✅ Admin Login using OTP
-        const response = await axios.post("http://localhost:5010/verify-otp", {
-          email: formData.email,
-          otp: formData.otp, // Use OTP instead of password
-        });
+  try {
+    let response;
 
-        localStorage.setItem("authToken", response.data.token);
-        localStorage.setItem("user", JSON.stringify(response.data.user));
+    if (isAdmin) {
+      // ✅ Admin Login using OTP
+      response = await axios.post("http://localhost:5010/verify-otp", {
+        email: formData.email,
+        otp: formData.otp, // Use OTP instead of password
+        
+      });
+      
+      console.log("✅ Admin logged in. Redirecting to Admin Dashboard...");
+      console.log(formData.email)
+      localStorage.setItem("admin", JSON.stringify({ email: formData.email }));
 
-        console.log("✅ Admin logged in. Redirecting to Admin Dashboard...");
-        navigate("/AdminDashboard");
-        return;
-      } 
-
+      navigate("/AdminDashboard");
+    } else {
       // ✅ Employee Login using Email & Password
-      const response = await axios.post("http://localhost:5010/api/auth/login", {
+      response = await axios.post("http://localhost:5010/api/auth/login", {
         email: formData.email,
         password: formData.password,
       });
@@ -65,27 +66,31 @@ const Login = () => {
       localStorage.setItem("authToken", token);
       localStorage.setItem("user", JSON.stringify(user));
 
-      // ✅ Employee Dashboard Redirection
+      // ✅ Fetch Employee Details by Logged-in User's Email
       try {
         const employeeCheckResponse = await axios.get("http://localhost:5010/api/employees", {
-          params: { email: formData.email },
+          params: { email: user.email }, // Use user.email instead of formData.email
+          headers: { Authorization: `Bearer ${token}` }, // Ensure authorized request
         });
 
-        if (employeeCheckResponse.data && employeeCheckResponse.data.profileUpdate==true) {
+        if (employeeCheckResponse.data?.profileUpdate === true) {
+          console.log(email.value);
           navigate("/EmployeeDashboard");
         } else {
           navigate("/EmployeeDetails");
         }
-      } catch {
+      } catch (error) {
+        console.error("Error fetching employee details:", error);
         navigate("/EmployeeDetails");
       }
-    } catch (error) {
-      setError(error.response?.data?.message || "Login failed");
-    } finally {
-      setLoading(false);
     }
-  };
-
+  } catch (error) {
+    console.error("Login Error:", error);
+    setError(error.response?.data?.message || "Login failed");
+  } finally {
+    setLoading(false);
+  }
+};
   return (
     <div className="login-page">
       <div className="login-container">
@@ -175,3 +180,10 @@ const Login = () => {
 };
 
 export default Login;
+
+
+
+
+
+
+

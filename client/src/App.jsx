@@ -14,7 +14,7 @@ import Signup from "./pages/SignupForm";
 import EmployeeProfile from "./UserComponents/Profile";
 import YourProgress from "./UserComponents/YourProgress";
 import YourTasks from "./UserComponents/YourTasks";
-import Notification from "./UserComponents/Notification";
+import Notifications from "./UserComponents/Notification";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./Components/Navbar";
@@ -24,6 +24,20 @@ import Sidebar from "./UserComponents/Sidebar";
 import VerifyEmail from "./pages/VerifyEmail";
 import EmployeeDetails from "./UserComponents/EmployeeDetails";
 import AdminSidebar from "./AdminComponents/AdminSidebar";
+import Attendance from "./UserComponents/Attendance";
+
+//Admin
+
+import AdminProfile from "./AdminComponents/AdminProfile";
+import AssignTasks from "./AdminComponents/AssignTasks";
+import EmployeeProgress from "./AdminComponents/EmployeeProgress";
+import ManageProfile from "./AdminComponents/ManageProfile";
+import Reports from "./AdminComponents/Reports";
+import SendNotification from "./AdminComponents/SendNotification";
+import AddTask from "./AdminComponents/AddTask";
+import Tasks from "./AdminComponents/Tasks";
+import ManageAttandance from "./AdminComponents/ManageAttandance";
+import SeeNotifications from "./AdminComponents/SeeNotifications";
 
 
 // Layout component to conditionally hide Navbar and Footer
@@ -40,8 +54,19 @@ const Layout = ({ children }) => {
     "/EmployeeProfile",
     "/YourProgress",
     "/YourTasks",
-    "/Notification",
-    "/AdminDashboard"
+    "/Notifications",
+    "/AdminDashboard",
+    "/Attendance",
+    "/AdminProfile",
+"/AssignTasks",
+"/EmployeeProgress",
+"/ManageProfile",
+"/Reports",
+"/SendNotification",
+"/AddTask",
+"/Tasks",
+"/ManageAttandance",
+"/SeeNotifications"
   ];
 
   const hideLayout = hideLayoutPages.includes(location.pathname);
@@ -88,7 +113,21 @@ function App() {
           <Route path="/EmployeeProfile" element={<EmployeeProfile />} />
           <Route path="/YourTasks" element={<YourTasks />} />
           <Route path="/YourProgress" element={<YourProgress />} />
-          <Route path="/Notification" element={<Notification />} />
+          <Route path="/Notifications" element={<Notifications />} />
+          <Route path="/Attendance" element={<Attendance />} />
+
+
+<Route path="/AdminProfile" element={<AdminProfile />} />
+<Route path="/AssignTasks" element={<AssignTasks />} />
+<Route path="/EmployeeProgress" element={<EmployeeProgress />} />
+<Route path="/ManageProfile" element={<ManageProfile />} />
+<Route path="/Reports" element={<Reports />} />
+<Route path="/SendNotification" element={<SendNotification />} />
+<Route path="/AddTask" element={<AddTask />} />
+<Route path="/Tasks" element={<Tasks />} />
+<Route path="/ManageAttandance" element={<ManageAttandance />} />
+<Route path="/SeeNotifications" element={<SeeNotifications />} />
+
 
         </Routes>
       </Layout>

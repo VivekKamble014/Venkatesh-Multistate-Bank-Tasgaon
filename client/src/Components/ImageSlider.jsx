@@ -3,12 +3,12 @@ import "../styles/ImageSlider.css";
 import g1 from '../assets/g1.png';
 import g2 from '../assets/g2.png';
 import g3 from '../assets/g3.png';
-import imgCopy2 from '../assets/image copy 2.png';
-import imgCopy4 from '../assets/image copy 4.png';
-import imgCopy from '../assets/image copy.png';
+import g4 from '../assets/g3.png';
+import g5 from '../assets/g3.png';
+
 
 const ImageSlider = () => {
-  const images = [g1, g2, g3, imgCopy2, imgCopy4, imgCopy];
+  const images = [g1, g2, g3, g4, g5];
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {

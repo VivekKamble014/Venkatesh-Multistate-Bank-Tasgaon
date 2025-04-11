@@ -6,7 +6,7 @@ import ownerimg from "../assets/owner.png";
 import ImageSlider from "../Components/ImageSlider";
 import BankImg from "../assets/multiwork.png"
 
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaMailBulk, FaVoicemail } from 'react-icons/fa';
 
 const Home = () => {
   return (
@@ -30,13 +30,16 @@ const Home = () => {
 
         {/* Owner Description */}
         <div className="owner-description">
-          <h2>Meet Our Founder</h2>
-          <h3>Mr. [Owner's Name]</h3>
+          <h2>Meet Our Branch Owner</h2>
+          <h3>Mr. Ganesh M. Gawali</h3>
           <p>
-            Mr. [Owner's Name] is the visionary leader behind Venkatesh Multistate Bank, bringing years of expertise in banking and finance. His commitment to innovation and customer service has led the bank to new heights, ensuring excellence in financial services.
+          Mr. Ganesh M. Gawali is the esteemed branch owner of Venkatesh Multistate Bank, Tasgaon Branch, renowned for his visionary leadership and dedication to financial excellence. With extensive experience in the banking and finance sector, he has been instrumental in shaping the bank’s success and delivering top-tier financial services to the community
           </p>
           <p>
-            With a mission to provide secure and reliable banking solutions, he has played a pivotal role in making banking accessible for everyone. His leadership continues to drive the bank forward with trust, efficiency, and excellence.
+          His commitment to customer-centric banking solutions and technological innovation has made banking more accessible, secure, and efficient for individuals and businesses alike. Under his leadership, the Tasgaon branch has flourished, offering trustworthy financial solutions tailored to meet the diverse needs of customers.
+          </p>
+          <p>
+          Driven by a mission to foster financial growth and stability, Mr. Gawali continues to lead Venkatesh Multistate Bank, Tasgaon Branch, with a focus on integrity, transparency, and excellence, ensuring a prosperous future for all.
           </p>
         </div>
       </div>
@@ -113,7 +116,7 @@ const Home = () => {
             <h3>Quick Links</h3>
             <ul>
               <li><a href="/">Home</a></li>
-              <li><a href="/about">About Us</a></li>
+              <li><a href="/about">AboutUs</a></li>
               <li><a href="/services">Services</a></li>
               <li><a href="/contact">Contact</a></li>
             </ul>
@@ -123,18 +126,16 @@ const Home = () => {
           <div className="footer-section contact">
             <h3>Contact Us</h3>
             <p>📍 Tasgaon, Maharashtra, India</p>
-            <p>📞 +91 98765 43210</p>
-            <p>✉️ info@vyanketeshbank.com</p>
+            <p>📞 +91 8600543983</p>
+            <p>✉️ venkateshmultistatetasgaon@vyanketeshbank.com</p>
           </div>
 
         </div>
 
         {/* Social Media Section */}
         <div className="footer-social">
-          <a href="#"><FaFacebook /></a>
           <a href="#"><FaTwitter /></a>
           <a href="#"><FaInstagram /></a>
-          <a href="#"><FaLinkedin /></a>
         </div>
       </div>
     </footer>

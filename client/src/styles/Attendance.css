@@ -1,0 +1,264 @@
+/* Attendance.css */
+.attendance {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center */
+    font-family: "Poppins", sans-serif;
+ 
+    min-height: 100vh;
+    padding: 20px;
+  }
+  .searchmonth{
+    width: 100%;
+    display: flex;
+    margin-bottom: 20px;
+  }
+  .searchmonth select{
+    width: 20%;
+    margin-inline: 10%;
+  }
+  .attendance-page {
+    margin-left: 20%;
+  
+  }
+  
+  .attendance-content {
+    flex: 1;
+ 
+  }
+  
+  h2 {
+    color: #000000;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Filter Section */
+  .filter-section {
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    /* justify-content: space-between; */
+    gap: 1.5rem;
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-block: 20px;
+  }
+  
+  .filter-section label {
+    font-weight: 600;
+    margin-right: 10px;
+    color: #444;
+  }
+  
+  .filter-section select,
+  .filter-section input,
+  .filter-section .react-datepicker__input-container input {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+  }
+  .icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    margin: 5px;
+  }
+  .icon-btn:hover {
+    color: #007bff;
+  }
+  .filter-section select:hover,
+  .filter-section input:hover {
+    border-color: #007bff;
+  }
+  
+  .search-btn, .refresh-btn, .print-btn, .csv-btn {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .search-btn { background: #007bff; color: white; }
+  .refresh-btn { background: #28a745; color: white; }
+
+  .csv-btn { background: #dc3545; color: white; }
+  
+  .search-btn:hover { background: #0056b3; }
+  .refresh-btn:hover { background: #218838; }
+  .csv-btn:hover { background: #c82333; }
+  
+  /* Attendance Table */
+  .attendance-table-wrapper {
+    overflow-x: auto;
+  }
+  
+  .attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .attendance-table thead {
+    background: #007bff;
+    color: white;
+  }
+  
+  .attendance-table th, .attendance-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .attendance-table th {
+    font-weight: bold;
+  }
+  
+  .attendance-table tbody tr:hover {
+    background: #f1f1f1;
+  }
+  
+  .clickable-image {
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .clickable-image:hover {
+    transform: scale(1.2);
+  }
+  
+  /* Modal for Enlarged Image */
+  .modal-overlay {
+    padding-left: 20%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 20px;
+    margin-inline: 60px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .modal-image {
+   width: 100%;
+   height: 60vh;
+    border-radius: 5px;
+  }
+
+
+
+/* ------------------ MEDIA QUERIES ------------------ */
+
+/* For tablets and smaller screens (up to 1024px) */
+@media (max-width: 1024px) {
+    .attendance-page {
+        margin-left: 5%;
+        width: 90%;
+    }
+
+    .modal-image {
+        max-height: 350px;
+    }
+    .searchmonth{
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+    .searchmonth select{
+      margin: 0;
+      width: auto;
+      display: flex;
+      margin-bottom: 20px;
+    }
+}
+
+/* For mobile devices (up to 768px) */
+@media (max-width: 768px) {
+    .attendance {
+        padding: 10px;
+    }
+
+    .attendance-page {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .filter-section {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .filter-section select,
+    .filter-section input {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .search-btn, .refresh-btn, .csv-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .attendance-table {
+        min-width: 100%;
+        overflow: scroll; 
+    }
+    
+    .modal-image {
+        max-height: 300px;
+    }
+}
+
+/* For very small screens (up to 480px) */
+@media (max-width: 480px) {
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    .search-btn, .refresh-btn, .csv-btn {
+      
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    .modal-content {
+        width: 95%;
+    }
+
+    .modal-image {
+        max-height: 250px;
+    }
+      
+  .attendance-table {
+    max-width: 100%;
+
+    overflow: scroll; 
+  }
+}

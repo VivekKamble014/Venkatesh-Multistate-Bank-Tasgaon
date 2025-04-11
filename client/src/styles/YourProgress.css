@@ -1,0 +1,117 @@
+.your-progress-container {
+    background: #f9f9f9;
+    min-height: 100vh;
+  }
+  
+  .content h2, .content h3 {
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  /* YourProgress.css */
+
+.your-progress-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f5f7fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    overflow-x: hidden;
+  }
+  
+  h2, h3 {
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .summary-section {
+    margin-top: 20px;
+    background: #f9f9f9;
+    padding: 15px 20px;
+    border-left: 4px solid #4CAF50;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .summary-section p {
+    margin: 5px 0;
+    font-size: 16px;
+  }
+  
+  .performance {
+    font-weight: bold;
+  }
+  
+  .chart-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+    margin-top: 30px;
+  }
+  
+  .chart-box {
+    flex: 1 1 400px;
+    min-width: 300px;
+    max-width: 600px;
+    background-color: #fafafa;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .chart-box h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+  }
+  
+  .export-button {
+    margin-top: 30px;
+    padding: 12px 24px;
+    background-color: #4CAF50;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .summary-section{
+    margin-block: 30px;
+  }
+  .export-button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 992px) {
+    .chart-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .content {
+      margin-left: 0 !important;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .summary-section p {
+      font-size: 14px;
+    }
+  
+    .chart-box h3 {
+      font-size: 16px;
+    }
+  
+    .export-button {
+      font-size: 14px;
+      padding: 10px 20px;
+    }
+  }

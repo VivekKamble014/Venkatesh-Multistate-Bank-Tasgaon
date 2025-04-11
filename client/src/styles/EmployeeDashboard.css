@@ -71,6 +71,64 @@
     background: #0056b3;
 }
 
+.charts-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+  }
+  
+  h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .chart-wrapper {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .bar-chart,
+  .pie-chart {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .bar-chart {
+    width: 420px;
+    height: 330px;
+  }
+  
+  .pie-chart {
+    width: 320px;
+    height: 320px;
+  }
+  
+  .recharts-tooltip-wrapper {
+    font-size: 14px;
+  }
+  
+  .recharts-legend-item {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
 /* Show Menu Button Only on Small Screens */
 @media (max-width: 768px) {
     .dashboard-content {

@@ -1,0 +1,111 @@
+.send-notification-page {
+  margin-left: 15%;
+    display: flex;
+  }
+  
+  .send-notification-content {
+    padding: 30px;
+    flex: 1;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  #user-select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .send-btn {
+    padding: 10px 20px;
+    background-color: #0052cc;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .send-btn:hover {
+    background-color: #003f99;
+  }
+
+  .send-notification-page {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .send-notification-content {
+    padding: 20px;
+    width: 100%;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .send-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #0a58ca;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+  
+  .popup-box {
+    background-color: #fff;
+    padding: 30px;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .popup-box label {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  .popup-box input,
+  .popup-box textarea {
+    padding: 8px;
+    width: 100%;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .popup-box button {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #0a58ca;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .popup-box {
+      padding: 20px;
+    }
+  }

@@ -1,9 +1,11 @@
+
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Sidebar from "./Sidebar";
 import "../styles/Profile.css";
 import pImage from "../assets/empProfile.png";
+
 export default function Profile() {
   const [employee, setEmployee] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -13,7 +15,8 @@ export default function Profile() {
   useEffect(() => {
     const fetchEmployeeData = async () => {
       const token = localStorage.getItem("authToken");
-      const userEmail = localStorage.getItem("userEmail");
+      const user = JSON.parse(localStorage.getItem("user")); // ✅ Extract user object
+      const userEmail = user?.email; // ✅ Get email from user object
 
       if (!token || !userEmail) {
         setError("Unauthorized access. Please log in.");
@@ -35,10 +38,8 @@ export default function Profile() {
         }
 
         const data = await response.json();
-        //console.log("✅ Employee Data:", data);
         setEmployee(data);
       } catch (error) {
-        //console.error("❌ Error fetching data:", error);
         setError("Failed to load profile.");
       } finally {
         setLoading(false);
@@ -48,39 +49,36 @@ export default function Profile() {
     fetchEmployeeData();
   }, []);
 
-  const handleEditProfile = () => {
-    navigate("/EmployeeDashboard"); // Redirect to an edit form
-  };
-
-  const handleDeleteProfile = async () => {
-    if (!window.confirm("Are you sure you want to delete your profile? This action cannot be undone.")) {
-      return;
-    }
-
+  const handleEditProfile = async () => {
+    const confirmEdit = window.confirm("Are you sure you want to edit your profile?");
+    
+    if (!confirmEdit) return;
+  
     const token = localStorage.getItem("authToken");
-    const userEmail = localStorage.getItem("userEmail");
-
+    const user = JSON.parse(localStorage.getItem("user"));
+    const userEmail = user?.email;
+  
     try {
-      const response = await fetch(`http://localhost:5010/api/employees?email=${encodeURIComponent(userEmail)}`, {
-        method: "DELETE",
+      const response = await fetch(`http://localhost:5010/api/employees/updateProfileStatus`, {
+        method: "PATCH", // Using PATCH for updating a specific field
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
+        body: JSON.stringify({ email: userEmail, profileUpdate: false }),
       });
-
+  
       if (!response.ok) {
-        throw new Error("Failed to delete profile.");
+        throw new Error("Failed to update profile status.");
       }
-
-      alert("Profile deleted successfully!");
-      localStorage.removeItem("authToken");
-      localStorage.removeItem("userEmail");
-      navigate("/login");
+  
+      navigate("/employeeDetails"); // Redirect after successful update
     } catch (error) {
-      alert("Error deleting profile. Please try again.");
+      alert("Error updating profile status. Please try again.");
     }
   };
+
+  
 
   return (
     <div className="profile-container">
@@ -93,12 +91,8 @@ export default function Profile() {
 
         {employee && (
           <div className="profile-card">
-            <img
-              src={pImage}
-              alt="Profile"
-              className="profile-image"
-            />
-            <h3>Welcome , {employee.fullName}</h3>
+            <img src={pImage} alt="Profile" className="profile-image" />
+            <h3>Welcome, {employee.fullName}</h3>
             <p><strong>Name:</strong> {employee.fullName}</p>
             <p><strong>Email:</strong> {employee.email}</p>
             <p><strong>Mobile:</strong> {employee.mobile}</p>
@@ -118,13 +112,10 @@ export default function Profile() {
             <p><strong>Taluka:</strong> {employee.address?.taluka}</p>
             <p><strong>Pincode:</strong> {employee.address?.pincode}</p>
 
-
             <div className="profile-actions">
               <button className="edit-btn" onClick={handleEditProfile}>Edit Profile</button>
-              <button className="delete-btn" onClick={handleDeleteProfile}>Delete Profile</button>
             </div>
           </div>
-          
         )}
       </div>
     </div>

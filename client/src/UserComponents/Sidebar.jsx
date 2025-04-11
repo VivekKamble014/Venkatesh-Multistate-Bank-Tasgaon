@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom"; // Import useNavigate
-import { Menu, X, User, LayoutDashboard, CheckSquare, BarChart, Bell, LogOut } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { 
+  Menu, X, User, LayoutDashboard, CheckSquare, BarChart, Bell, FileText, Headphones, LogOut
+} from "lucide-react";
 import "../styles/Sidebar.css";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(window.innerWidth > 768);
-  const location = useLocation(); // Get current route path
-  const navigate = useNavigate(); // For redirection
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  // Handle screen resize to show sidebar on large screens
+  // Handle screen resize
   useEffect(() => {
     const handleResize = () => {
       setIsOpen(window.innerWidth > 768);
@@ -19,13 +21,13 @@ const Sidebar = () => {
 
   // Logout function
   const handleLogout = () => {
-    localStorage.removeItem("authToken"); // Remove token
-    navigate("/login"); // Redirect to login page
+    localStorage.removeItem("authToken");
+    navigate("/login");
   };
 
   return (
     <>
-      {/* Sidebar Toggle Button (Only for Small Screens) */}
+      {/* Sidebar Toggle Button for Small Screens */}
       {window.innerWidth <= 768 && (
         <button className="menu-btn" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -37,12 +39,11 @@ const Sidebar = () => {
         {/* Welcome Message */}
         <div className="welcome-message">
           <h2>Welcome!</h2>
-          
         </div>
 
         <ul className="sidebar-menu">
-          <li className={location.pathname === "/Profile" ? "active" : ""}>
-            <Link to="/Profile">
+          <li className={location.pathname === "/EmployeeProfile" ? "active" : ""}>
+            <Link to="/EmployeeProfile">
               <User size={22} />
               <span>Profile</span>
             </Link>
@@ -65,10 +66,28 @@ const Sidebar = () => {
               <span>Your Progress</span>
             </Link>
           </li>
-          <li className={location.pathname === "/Notification" ? "active" : ""}>
-            <Link to="/Notification">
+          <li className={location.pathname === "/Attendance" ? "active" : ""}>
+            <Link to="/Attendance">
               <Bell size={22} />
-              <span>Notification</span>
+              <span>Attendance</span>
+            </Link>
+          </li>
+          <li className={location.pathname === "/Notifications" ? "active" : ""}>
+            <Link to="/Notifications">
+              <Bell size={22} />
+              <span>Notifications</span>
+            </Link>
+          </li>
+          <li className={location.pathname === "/Reports" ? "active" : ""}>
+            <Link to="/Reports">
+              <FileText size={22} />
+              <span>Reports</span>
+            </Link>
+          </li>
+          <li className={location.pathname === "/CustomerCare" ? "active" : ""}>
+            <Link to="/CustomerCare">
+              <Headphones size={22} />
+              <span>Customer Care</span>
             </Link>
           </li>
 
