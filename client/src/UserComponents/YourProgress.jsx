@@ -29,7 +29,9 @@ const attendancePie = [
 
 
 useEffect(() => {
-  const email = localStorage.getItem("userEmail");
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const email = storedUser?.email;
+  console.log(email);
   setUserEmail(email);
   if (email) {
     Promise.all([
@@ -89,6 +91,7 @@ useEffect(() => {
       "Assigned Date": new Date(task.createdAt).toLocaleDateString(),
       "Completed Date": task.completedAt ? new Date(task.completedAt).toLocaleDateString() : "Not Completed"
     }));
+
 
     // Add summary rows
     sheetData.push({});

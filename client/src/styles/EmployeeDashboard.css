@@ -12,6 +12,14 @@
     overflow-y: auto; /* Enables scrolling when content overflows */
     background: #f4f4f4;
 }
+.captured-image {
+  width: 100%;
+  max-width: 300px; /* Adjust this as needed */
+  height: 300px;
+  margin-top: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
 
 /* Layout */
 .dashboard-container {

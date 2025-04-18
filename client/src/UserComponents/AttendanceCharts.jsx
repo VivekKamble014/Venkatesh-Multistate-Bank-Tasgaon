@@ -13,8 +13,8 @@ export default function AttendanceCharts() {
     const [pieData, setPieData] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    const employeeEmail = localStorage.getItem("userEmail");
-
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const employeeEmail = storedUser?.email;
     useEffect(() => {
       const fetchAttendanceData = async () => {
         if (!employeeEmail) return;
@@ -125,7 +125,7 @@ export default function AttendanceCharts() {
                 <th>Month</th>
                 <th>Present Days</th>
                 <th>Absent Days</th>
-                <th>Actions</th>
+      
               </tr>
             </thead>
             <tbody>
@@ -135,9 +135,7 @@ export default function AttendanceCharts() {
                   <td>{monthData.month}</td>
                   <td>{monthData.present}</td>
                   <td>{monthData.absent}</td>
-                  <td>
-                    <button className="view-btn">👁️ View</button>
-                  </td>
+             
                 </tr>
               ))}
             </tbody>

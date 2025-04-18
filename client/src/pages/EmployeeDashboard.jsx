@@ -262,7 +262,8 @@ const formatLocalTime = (timeString) => {
                 <button onClick={captureImage}>📸 Capture</button>
               ) : (
                 <>
-                  <img src={capturedImage} alt="Captured" width="300" height="200" />
+                  {/* <img src={capturedImage} alt="Captured" width="300" height="800" /> */}
+                  <img src={capturedImage} alt="Captured" className="captured-image" />
                   <button onClick={uploadAttendance}>⬆️ Upload</button>
                 </>
               )}

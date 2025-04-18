@@ -98,13 +98,13 @@ const AdminSidebar = () => {
               <span>Manage Profile</span>
             </Link>
           </li>
-          <li className={location.pathname === "/Reports" ? "active" : ""}>
+          {/* <li className={location.pathname === "/Reports" ? "active" : ""}>
             <Link to="/Reports">
               <FileText size={22} />
               <span>Reports</span>
             </Link>
            
-          </li>
+          </li> */}
 
           {/* Logout Button */}
           <li className="logout">

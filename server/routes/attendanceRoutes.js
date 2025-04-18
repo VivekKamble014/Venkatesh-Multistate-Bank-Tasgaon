@@ -192,4 +192,20 @@ router.get("/by-email/:email", async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 });
+
+
+router.get("/calender", async (req, res) => {
+  const { email } = req.query;
+
+  if (!email) return res.status(400).json({ message: "Email is required" });
+
+  try {
+    const attendance = await Attendance.find({ email });
+    res.json({ success: true, attendance });
+  } catch (err) {
+    console.error("Error fetching attendance:", err);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
 module.exports = router;

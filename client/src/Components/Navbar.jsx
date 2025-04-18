@@ -25,8 +25,7 @@ export default function Navbar() {
                 </div>
                 <div className={`navbar-menu ${isMenuActive ? 'active' : ''}`} id="navbar-menu">
                     <Link to="/">Home</Link>
-                    <Link to="/">About</Link>
-                    <Link to="/">Contact</Link>
+            
                     
                     <Link to="/login" onClick={() => setIsMenuActive(false)}>Login / Ragister</Link>
                 </div>

@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const Employee = require("../models/Employee");
 const Task = require("../models/Task")
+
+const Attendance = require("../models/Attendance");
+
 router.get("/get-employee", async (req, res) => {
   const { role } = req.query;
 
@@ -175,6 +178,21 @@ router.put('/update-task/:id', async (req, res) => {
     res.status(200).json(updatedTask);
   } catch (err) {
     res.status(500).json({ error: "Failed to update task" });
+  }
+});
+
+
+
+router.get("/attendance/by-email", async (req, res) => {
+  try {
+    const email = req.query.email;
+    if (!email) return res.status(400).json({ message: "Email is required" });
+
+    const records = await Attendance.find({ email });
+    res.status(200).json(records);
+  } catch (error) {
+    console.error("Error fetching attendance:", error);
+    res.status(500).json({ message: "Server error" });
   }
 });
 module.exports = router;

@@ -78,7 +78,7 @@ const Sidebar = () => {
               <span>Notifications</span>
             </Link>
           </li>
-          <li className={location.pathname === "/Reports" ? "active" : ""}>
+          {/* <li className={location.pathname === "/Reports" ? "active" : ""}>
             <Link to="/Reports">
               <FileText size={22} />
               <span>Reports</span>
@@ -89,7 +89,7 @@ const Sidebar = () => {
               <Headphones size={22} />
               <span>Customer Care</span>
             </Link>
-          </li>
+          </li> */}
 
           {/* Logout Button */}
           <li className="logout">

@@ -13,34 +13,32 @@ export default function ManageAttendance() {
   const [endDate, setEndDate] = useState("");
   const [loading, setLoading] = useState(false);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
-
   const [sortConfig, setSortConfig] = useState({ key: "", direction: "asc" });
+
+  // Get logged-in admin email
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const adminEmail = storedUser?.email || "unknown@admin.com";
 
   useEffect(() => {
     axios.get("http://localhost:5010/api/get-all-emails")
       .then(res => setUsers(res.data))
-      .catch(err => console.error("Failed to fetch emails:", err));
+      .catch(err => console.error("Failed to fetch users:", err));
   }, []);
 
   const getFullNameByEmail = (email) => {
     const user = users.find(u => u.email === email);
-    return user ? user.fullName : email;
+    return user?.fullName || email;
   };
 
   const sortedData = [...attendanceData].sort((a, b) => {
     if (!sortConfig.key) return 0;
     const aVal = a[sortConfig.key];
     const bVal = b[sortConfig.key];
-    if (aVal < bVal) return sortConfig.direction === "asc" ? -1 : 1;
-    if (aVal > bVal) return sortConfig.direction === "asc" ? 1 : -1;
-    return 0;
+    return (aVal < bVal ? -1 : aVal > bVal ? 1 : 0) * (sortConfig.direction === "asc" ? 1 : -1);
   });
 
   const handleSort = (key) => {
-    let direction = "asc";
-    if (sortConfig.key === key && sortConfig.direction === "asc") {
-      direction = "desc";
-    }
+    const direction = (sortConfig.key === key && sortConfig.direction === "asc") ? "desc" : "asc";
     setSortConfig({ key, direction });
   };
 
@@ -57,19 +55,19 @@ export default function ManageAttendance() {
       })
       .then(res => setAttendanceData(res.data))
       .catch(err => {
-        console.error("Error fetching attendance:", err);
-        alert("Error fetching attendance. See console.");
+        console.error("Fetch error:", err);
+        alert("Error fetching attendance.");
       })
       .finally(() => setLoading(false));
   };
 
-
   const handleRefresh = () => {
     setStartDate("");
     setEndDate("");
-    setAttendanceData([]); // Clear table
+    setAttendanceData([]);
+    setRefreshTrigger(prev => prev + 1);
   };
-  
+
   useEffect(() => {
     if (!selectedEmail) return;
     setLoading(true);
@@ -79,52 +77,52 @@ export default function ManageAttendance() {
       })
       .then(res => setAttendanceData(res.data))
       .catch(err => {
-        console.error("Error refreshing:", err);
-        alert("Refresh failed.");
+        console.error("Refresh error:", err);
+        alert("Failed to refresh data.");
       })
       .finally(() => setLoading(false));
   }, [refreshTrigger]);
 
   const handleDelete = (id) => {
-    if (!window.confirm("Are you sure you want to delete this record?")) return;
+    if (!window.confirm("Delete this attendance record?")) return;
     axios.delete(`http://localhost:5010/api/attendance/delete/${id}`)
       .then(() => {
         alert("Deleted successfully!");
         handleSearch();
       })
       .catch(err => {
-        console.error("Error deleting:", err);
-        alert("Failed to delete.");
+        console.error("Delete error:", err);
+        alert("Delete failed.");
       });
   };
 
   const handleStatusChange = (id, newStatus) => {
-    const markedByEmail = localStorage.getItem("userEmail");
     axios.patch(`http://localhost:5010/api/attendance/update-status/${id}`, {
       isPresent: newStatus,
       markedByType: "Admin",
-      attendanceMarkedBy: markedByEmail
-    }).then(() => handleSearch())
+      attendanceMarkedBy: adminEmail
+    })
+      .then(() => handleSearch())
       .catch(err => {
-        console.error("Error updating status:", err);
-        alert("Failed to update attendance.");
+        console.error("Update status error:", err);
+        alert("Failed to update status.");
       });
   };
 
   const handleMarkedByTypeChange = (id, newType) => {
-    const markedByEmail = localStorage.getItem("userEmail");
     axios.patch(`http://localhost:5010/api/attendance/update-markedby/${id}`, {
       markedByType: newType,
-      attendanceMarkedBy: markedByEmail
-    }).then(() => handleSearch())
+      attendanceMarkedBy: adminEmail
+    })
+      .then(() => handleSearch())
       .catch(err => {
-        console.error("Error updating Marked By:", err);
+        console.error("Update markedBy error:", err);
         alert("Failed to update marked by.");
       });
   };
 
   const exportToExcel = () => {
-    if (!attendanceData.length) return alert("No data to export");
+    if (!attendanceData.length) return alert("No attendance data to export.");
 
     const sheetData = attendanceData.map((entry, index) => ({
       "S.No": index + 1,
@@ -134,22 +132,21 @@ export default function ManageAttendance() {
       "Time": entry.time,
       "Status": entry.isPresent,
       "Marked By": getFullNameByEmail(entry.attendanceMarkedBy),
-      "Marked By Type": entry.markedByType
+      "Marked By Type": entry.markedByType || "User"
     }));
 
     const worksheet = XLSX.utils.json_to_sheet(sheetData);
     const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Attendance Report");
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Attendance");
 
-    const fileName = `Attendance_${selectedEmail.replace(/[@.]/g, "_")}_${startDate || "from"}_to_${endDate || "now"}.xlsx`;
+    const filename = `Attendance_${selectedEmail.replace(/[@.]/g, "_")}_${startDate || "from"}_to_${endDate || "now"}.xlsx`;
     const excelBuffer = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
-    const data = new Blob([excelBuffer], { type: "application/octet-stream" });
-    saveAs(data, fileName);
+    saveAs(new Blob([excelBuffer], { type: "application/octet-stream" }), filename);
   };
 
   return (
     <div className="manage-attendance-page">
-    <AdminSidebar/>
+      <AdminSidebar />
       <h2>Manage Attendance</h2>
 
       <div className="form-group">
@@ -160,8 +157,8 @@ export default function ManageAttendance() {
           onChange={(e) => setSelectedEmail(e.target.value)}
         >
           <option value="">-- Select Employee --</option>
-          {users.map((user, index) => (
-            <option key={index} value={user.email}>
+          {users.map((user, idx) => (
+            <option key={idx} value={user.email}>
               {user.fullName} ({user.email})
             </option>
           ))}
@@ -170,14 +167,13 @@ export default function ManageAttendance() {
 
       <div className="form-group">
         <label>Start Date:</label>
-        <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
-
+        <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
         <label>End Date:</label>
-        <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+        <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} />
 
         <button onClick={handleSearch} disabled={loading}>Search</button>
-        <button onClick={handleRefresh} className="refresh-btn">Refresh</button>
-        <button onClick={exportToExcel} className="export-btn">Export to Excel</button>
+        <button onClick={handleRefresh}>Refresh</button>
+        <button onClick={exportToExcel} disabled={!attendanceData.length}>Export</button>
       </div>
 
       {sortedData.length > 0 && (
@@ -204,7 +200,7 @@ export default function ManageAttendance() {
                   <td>
                     <img
                       src={entry.image}
-                      alt={`Attendance of ${entry.email}`}
+                      alt="Attendance"
                       width="50"
                       height="50"
                       style={{ objectFit: "cover", borderRadius: "5px" }}
@@ -215,7 +211,7 @@ export default function ManageAttendance() {
                   <td>
                     <select
                       value={entry.isPresent}
-                      onChange={(e) => handleStatusChange(entry._id, e.target.value)}
+                      onChange={e => handleStatusChange(entry._id, e.target.value)}
                       className="status-dropdown"
                     >
                       <option value="Present">Present</option>
@@ -226,7 +222,7 @@ export default function ManageAttendance() {
                   <td>
                     <select
                       value={entry.markedByType || "User"}
-                      onChange={(e) => handleMarkedByTypeChange(entry._id, e.target.value)}
+                      onChange={e => handleMarkedByTypeChange(entry._id, e.target.value)}
                       className="status-dropdown"
                     >
                       <option value="User">{getFullNameByEmail(entry.attendanceMarkedBy)}</option>

@@ -1,5 +1,5 @@
 .notification-page {
-    margin-left: 15%;
+    padding-left:  15%;
     display: flex;
     flex-direction: row;
     min-height: 100vh;
@@ -191,7 +191,15 @@
     border-radius: 5px;
     cursor: pointer;
   }
-  
+  .sender-info {
+    background-color: #f4f4f4;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+  }
+  .sender-info h4 {
+    margin-top: 0;
+  }
   .read-btn:hover {
     background-color: #006bcc;
   }
