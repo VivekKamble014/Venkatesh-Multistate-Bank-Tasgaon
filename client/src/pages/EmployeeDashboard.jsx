@@ -259,12 +259,13 @@ const formatLocalTime = (timeString) => {
               <canvas ref={canvasRef} width="300" height="200" style={{ display: "none" }}></canvas>
 
               {!capturedImage ? (
-                <button onClick={captureImage}>📸 Capture</button>
+                <button onClick={captureImage}>Capture</button>
               ) : (
                 <>
                   {/* <img src={capturedImage} alt="Captured" width="300" height="800" /> */}
                   <img src={capturedImage} alt="Captured" className="captured-image" />
-                  <button onClick={uploadAttendance}>⬆️ Upload</button>
+                  <button onClick={uploadAttendance}> Upload</button>
+                  <button onClick={() => window.location.reload()}>Cancel</button>
                 </>
               )}
             </div>
